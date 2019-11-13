@@ -1,5 +1,8 @@
 Flask<1
+numpy==1.16.4
 pyjade<3
 psycopg2
-pybind11
+pyodbc==4.0.27
+pip==10.0.1
+pybind11==2.4.3
 turbodbc==3.2.0
