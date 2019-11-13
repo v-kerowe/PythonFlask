@@ -14,6 +14,9 @@ ENV SSH_PASSWD "root:Docker!"
 RUN apt-get update \
         && apt-get install -y --no-install-recommends dialog \
         && apt-get update \
+        && apt-get install -y --no-install-recommends libboost-all-dev \
+        && apt-get install -y --no-install-recommends unixodbc-dev \
+        && apt-get install -y --no-install-recommends python-dev \
 	&& apt-get install -y --no-install-recommends openssh-server \
 	&& echo "$SSH_PASSWD" | chpasswd 
 
