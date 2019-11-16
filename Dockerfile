@@ -14,7 +14,10 @@ RUN apt-get update \
         && apt-get install -y --no-install-recommends python-dev \
         && echo "Turbodbc Req Done"
 
-#Install Python Modules
+#Install Python Modules requiered by turbodbc
+RUN pip install -U numpy pybind11
+
+#Install App Python Modules
 ADD requirements.txt /code/
 RUN pip install -r requirements.txt
 ADD . /code/
