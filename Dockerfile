@@ -2,7 +2,7 @@
 #FROM python:3.4
 FROM python:3.6.9
 
-#Install SQL ODBC driver
+#Install SQL ODBC driver (Debian Buster)
 #https://docs.microsoft.com/en-us/sql/connect/odbc/linux-mac/installing-the-microsoft-odbc-driver-for-sql-server?view=sql-server-2017#microsoft-odbc-driver-17-for-sql-server
 RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
         && curl https://packages.microsoft.com/config/debian/10/prod.list > /etc/apt/sources.list.d/mssql-release.list
