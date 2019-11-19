@@ -2,16 +2,26 @@
 #FROM python:3.4
 FROM python:3.6.9
 
+#Install SQL ODBC driver
+#https://docs.microsoft.com/en-us/sql/connect/odbc/linux-mac/installing-the-microsoft-odbc-driver-for-sql-server?view=sql-server-2017#microsoft-odbc-driver-17-for-sql-server
+RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
+        && curl https://packages.microsoft.com/config/debian/10/prod.list > /etc/apt/sources.list.d/mssql-release.list
+
+RUN apt-get update \
+        && ACCEPT_EULA=Y apt-get install -y --no-install-recommends msodbcsql17 \
+        && echo "SQL-ODBC Driver Ready"
+
 RUN mkdir /code
 WORKDIR /code
 
-#Turbodbc Requirements https://turbodbc.readthedocs.io/en/latest/pages/getting_started.html#installation
+#Turbodbc Requirements 
+#https://turbodbc.readthedocs.io/en/latest/pages/getting_started.html#installation
 RUN apt-get update \
         && apt-get install -y --no-install-recommends dialog \
         && apt-get update \
         && apt-get install -y --no-install-recommends libboost-all-dev \
-        && apt-get install -y --no-install-recommends unixodbc-dev \
         && apt-get install -y --no-install-recommends python-dev \
+        && apt-get install -y --no-install-recommends unixodbc-dev \
         && echo "Turbodbc Req Done"
 
 #Install Python Modules requiered by turbodbc
